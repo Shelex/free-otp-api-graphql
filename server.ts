@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import Fastify from "fastify";
 import mercurius from "mercurius";
+import { auth, verySecretApiKey } from "./auth.js";
 
 const fastify = Fastify();
 
@@ -57,6 +58,12 @@ const resolvers = {
             }
             return response.json();
         },
+
+        authorize: () => {
+            return {
+                token: verySecretApiKey,
+            };
+        },
     },
 };
 
@@ -64,6 +71,8 @@ fastify.register(mercurius, {
     schema,
     resolvers,
 });
+
+fastify.addHook("preHandler", auth);
 
 fastify.listen({ port: 3000 }, (err) => {
     if (err) throw err;

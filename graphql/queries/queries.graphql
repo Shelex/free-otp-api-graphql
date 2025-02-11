@@ -56,3 +56,9 @@ query GetCountries {
         count
     }
 }
+
+query Authorize {
+    authorize {
+        token
+    }
+}

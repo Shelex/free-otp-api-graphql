@@ -9,6 +9,11 @@ type Query {
         source: String
     ): OTPResponse!
     getCountries: [CountryInfo!]!
+    authorize: AuthorizeResponse!
+}
+
+type AuthorizeResponse {
+    token: String!
 }
 
 type PhoneListResponse {
