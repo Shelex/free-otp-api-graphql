@@ -1,0 +1,51 @@
+type Query {
+    getPhoneList(country: String!): PhoneListResponse!
+    getOTPCode(
+        country: String!
+        phoneNumber: String!
+        ago: String
+        since: Float
+        match: String
+        source: String
+    ): OTPResponse!
+    getCountries: [CountryInfo!]!
+}
+
+type PhoneListResponse {
+    phones: [Phone!]!
+}
+
+type Phone {
+    url: String!
+    value: String!
+    source: String!
+}
+
+type OTPResponse {
+    requested: RequestedInfo!
+    result: OTPResult
+    results: [OTPResult]
+}
+
+type RequestedInfo {
+    country: String!
+    phoneNumber: String!
+    ago: Float!
+    agoText: String
+    match: String!
+}
+
+type OTPResult {
+    ago: Float!
+    agoText: String!
+    message: String!
+    otp: String!
+    url: String!
+}
+
+type CountryInfo {
+    url: String!
+    country: String!
+    source: String!
+    count: Int!
+}

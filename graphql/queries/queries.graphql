@@ -1,0 +1,58 @@
+query GetPhoneList($country: String!) {
+    getPhoneList(country: $country) {
+        phones {
+            url
+            value
+            source
+        }
+    }
+}
+
+query GetOTPCode(
+    $country: String!
+    $phoneNumber: String!
+    $ago: String
+    $since: Float
+    $match: String
+    $source: String
+) {
+    getOTPCode(
+        country: $country
+        phoneNumber: $phoneNumber
+        ago: $ago
+        since: $since
+        match: $match
+        source: $source
+    ) {
+        requested {
+            country
+            phoneNumber
+            ago
+            agoText
+            match
+        }
+        result {
+            ago
+            agoText
+            message
+            otp
+            url
+        }
+        results {
+            ago
+            agoText
+            message
+            otp
+            url
+        }
+    }
+}
+
+query GetCountries {
+    getCountries {
+        url
+        country
+        source
+        count
+    }
+}
