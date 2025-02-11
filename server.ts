@@ -74,7 +74,7 @@ fastify.register(mercurius, {
 
 fastify.addHook("preHandler", auth);
 
-fastify.listen({ port: 3000 }, (err) => {
+fastify.listen({ host: "0.0.0.0", port: 3000 }, (err) => {
     if (err) throw err;
     console.log("Server listening on http://localhost:3000/graphql");
 });
